@@ -1,0 +1,498 @@
+import React, { useState } from 'react';
+import Homeproductsinfo from './Homeproductsinfo';
+import orangelamp from '../Images/orangelamp.webp';
+import { useProducts } from "medusa-react";
+import Abc from './Abc';
+import Shoppingpage from './Shoppingpage';
+import { useNavigate } from 'react-router-dom';
+
+
+function Homeproducts() {
+  // const navigate = useNavigate(); 
+  const { products, isLoading } = useProducts();
+  const topProduct = products ? products[1] : null;
+
+  // const [selectedProduct, setSelectedProduct] = useState(null);
+
+  // const handleLearnMoreClick = (productData) => {
+  //   setSelectedProduct(productData);
+    // navigate('/Shoppingpage');
+  // };
+  console.log(topProduct)
+
+  return (
+    <div className='p-[1rem]'>
+      <h2 className="text-[32px] font-medium leading-[2rem] pt-[4rem] pb-[3rem] md:text-[50px] md:leading-[3rem] xl:text-[60px] xl:leading-[4rem] ">Meet SKYVIEW™ — total wellness for sleep,<br/>mood, performance.</h2>
+      <div className='grid md:grid-cols-2 gap-2'>
+        <Homeproductsinfo
+          classbg="bg-[#EFE9E5] rounded-md pt-[2rem] "
+          productname="SKYVIEW 2 PRO"
+          cost="$949"
+          height="Height:20.7in (52cm)"
+          productimage={orangelamp} 
+          btn="Learn More"
+        />
+
+        {topProduct && (
+          <Homeproductsinfo
+            key={topProduct.id}
+            classbg="bg-[#F4F4F4] rounded-md pt-[2rem] "
+            productname={topProduct.title}
+            cost="$949"
+            height={`Height: ${topProduct.height}`}
+           
+            productimage={topProduct.images[0].url}
+            // onLearnMoreClick={handleLearnMoreClick}
+            btn="Learn More"
+          />
+        )}
+      </div>
+       
+      {/* {selectedProduct && <Shoppingpage product={selectedProduct} />} */}
+      
+    </div>
+  );
+}
+
+export default Homeproducts;
+
+
+
+
+
+import React, { useState } from 'react'
+import { useInView } from "react-intersection-observer";
+import clsx from "clsx";
+
+
+function Homeproductsinfo({productname,cost,height,productimage,btn,classbg,onLearnMoreClick}) {
+
+  // const handleLearnMoreClick = () => {
+  //   onLearnMoreClick({ productname, cost, height, productimage });
+  // };
+
+    const [view,setview]=useState(false)
+
+    const { ref, inView, entry } = useInView({
+        /* Optional options */
+        threshold: 0,
+      });
+      console.log(inView)
+  return (
+    <div ref={ref} className={` `} onMouseEnter={()=>setview(true)} onMouseLeave={()=>setview(false)}>
+        <div className={classbg + ' text-center  h-[40rem]'}>
+            <h1 className='text-[28px] text-[#000000] text-center md:text-start md:pl-[2rem]'>{productname}</h1>
+            <h2 className='text-[28px] text-[#000000] text-center md:hidden md:text-start md:pl-[2rem]'>{cost}</h2>
+            <h2 className='text-[#444444] text-center md:text-start md:pl-[2rem]'>{height}</h2>
+            <div className='py-[6rem] w-full mx-auto xl:py-0 '>
+            <img className={`duration-1000  transition-transform h-[12rem] px-[2.5rem] mx-auto md:h-[22rem]  md:pt-[1rem] ${view?" scale-105 duration-1000  transition-transform":""}`} src={productimage} alt='image'/>
+            </div>
+            <h2 className='text-[28px] text-[#000000] text-center hidden md:flex flex-col md:text-start md:pl-[2rem] md:pt-[1rem]'>{cost}</h2>
+            <div className='text-center pb-[2rem] md:text-start md:pl-[2rem]'>
+            <button className='bg-[#000000] text-white px-[32px] py-[10px] text-center items-center rounded-full w-[15rem] xl:w-[10rem]' >{btn}</button> 
+            {/* onClick={handleLearnMoreClick} */}
+            </div>
+           
+        </div>
+    </div>
+  )
+}
+
+export default Homeproductsinfo
+
+
+
+
+import React from "react";
+
+function Shoppingcartright() {
+  return (
+    <div>
+      <div>
+        <h2 className="text-[28px] font-medium ">Choose a version</h2>
+        <p className="text-[#888888] text-[20px]">Whichever lamp you choose, you’ll be finding flow and resting well in no time.</p>
+      </div>
+
+      <div className="py-[1rem] mt-4 flex justify-between px-[1rem] border border-gray-300  rounded-md  shadow-md">
+          <div>
+            <h2 className="text-[20px]">SKYVIEW 2 PRO</h2>
+            <p className="text-[#888888] text-[12px]">20.7in (52cm)</p>
+          </div>
+          <p>$449</p>
+      </div>
+      <button className="bg-[#000000] text-white w-full rounded-full p-[1rem] mt-4">Add to cart</button>
+    </div>
+  );
+}
+
+export default Shoppingcartright;
+
+
+
+
+import React from "react";
+import Shoppingpageinfo from "./Shoppingpageinfo";
+import Shoppingcartright from "./Shoppingcartright";
+import Deliveryinfo from "./Deliveryinfo";
+
+function Shoppingpage({product}) {
+
+    const cartinfo=[{
+        addedimage:product.productimage
+    }]
+  let slides = [
+    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
+    "https://wallpapercave.com/wp/wp3386769.jpg",
+    "https://wallpaperaccess.com/full/809523.jpg",
+    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
+    "https://wallpapercave.com/wp/wp3386769.jpg",
+    "https://wallpaperaccess.com/full/809523.jpg",
+    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+    "https://i.pinimg.com/originals/51/82/ac/5182ac536727d576c78a9320ac62de30.jpg",
+    "https://wallpapercave.com/wp/wp3386769.jpg",
+    "https://wallpaperaccess.com/full/809523.jpg",
+    "https://getwallpapers.com/wallpaper/full/5/c/0/606489.jpg",
+  ];
+
+  return (
+    <>
+    <div className="px-[2rem] bg-[#f8f9fa]">
+
+      <div className="w-[100%]  md:grid-rows-1 gap-4 grid md:grid-cols-3 m-auto pt-11 ">
+        <div className="row-start-3 md:row-start-1 md:col-span-2">
+          <Deliveryinfo />
+        </div>
+
+        <div className="md:col-span-2 row-span- ">
+          <Shoppingpageinfo slides={slides}  cartinfo1={cartinfo[0]}/>
+        </div>
+
+        <div className="">
+          <Shoppingcartright />
+        </div>
+      </div>
+      </div>
+    </>
+  );
+}
+
+export default Shoppingpage;
+
+
+
+
+
+import React from 'react'
+import { useState } from "react";
+import {
+  BsFillArrowRightCircleFill,
+  BsFillArrowLeftCircleFill,
+} from "react-icons/bs";
+
+function Shoppingpageinfo({slides,cartinfo}) {
+    let [current, setCurrent] = useState(0);
+
+  let previousSlide = () => {
+    if (current === 0) setCurrent(0 );
+    else setCurrent(current - 1);
+  };
+
+  let nextSlide = () => {
+    if (current === slides.length - 1) setCurrent(slides.length-1);
+    else setCurrent(current + 1);
+  };
+  return (
+    <div className=" overflow-hidden relative">
+      <div
+        className={`flex transition ease-out duration-40`}
+        style={{
+          transform: `translateX(-${current * 100}%)`,
+        }}
+      >
+        {slides.map((s) => {
+          return <img src={s} />;
+        })}
+      </div>
+
+      <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
+        <button onClick={previousSlide}>
+          <BsFillArrowLeftCircleFill />
+        </button>
+        <button onClick={nextSlide}>
+          <BsFillArrowRightCircleFill />
+        </button>
+      </div>
+
+      {/* <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full">
+        {slides.map((s, i) => {
+          return (
+            <div
+              onClick={() => {
+                setCurrent(i);
+              }}
+              key={ i}
+              className={`rounded-full w-5 h-5 cursor-pointer  ${
+                i == current ? "bg-white" : "bg-gray-500"
+              }`}
+            ></div>
+          );
+        })}
+      </div> */}
+    </div>
+  )
+}
+
+export default Shoppingpageinfo
+
+
+
+
+
+
+
+
+
+import { MedusaProvider } from "medusa-react";
+
+import { QueryClient } from "@tanstack/react-query";
+import React from "react";
+import Store from "./components/Store";
+import Navbar from "./components/Navbar";
+import Videosection from "./components/Videosection";
+import Home from "./components/Home";
+import Animatedtext1 from "./components/Animatedtext1";
+import Shoppingpage from "./components/Shoppingpage";
+
+const queryClient = new QueryClient();
+
+function App() {
+  return (
+    
+      <MedusaProvider
+        queryClientProviderProps={{ client: queryClient }}
+        baseUrl="http://localhost:9000"
+      >
+        <div className="App overflow-x-hidden">
+          
+          {/* <Store/> */}
+          <Navbar/>
+          {/* <Videosection/> */}
+          <Home/>
+          {/* <Shoppingpage/> */}
+        {/* <Animatedtext1/> */}
+        </div>
+      </MedusaProvider>
+    
+  );
+}
+
+
+export default App;
+
+
+
+
+
+import React, { useState } from "react";
+import { useProduct } from "medusa-react";
+import { useParams } from "react-router-dom";
+import Deliveryinfo from "./Deliveryinfo";
+import shipping from "../Images/shipping.png";
+import cart from "../Images/cart.png";
+import correct from "../Images/correct.png";
+import cross1 from "../Images/cross1.svg";
+// import return1 from "../Images/return1.png";
+import cable from "../Images/cable.png";
+import donlod from "../Images/donlod.png";
+import { useCart} from 'medusa-react';
+
+import {
+  BsFillArrowRightCircleFill,
+  BsFillArrowLeftCircleFill,
+} from "react-icons/bs";
+import Learnmore from "./Learnmore";
+import Imageanimation from "./Imageanimation";
+import Cart from "./Cart";
+
+function Shoppingnew({checkoutvalue}) {
+
+  const handleClick = () => {
+    createCart.mutate({}) // create an empty cart
+  }
+
+  const { cart, createCart } = useCart()
+  const { path } = useParams();
+  console.log("path", path);
+
+  const { product, isLoading } = useProduct(path);
+  const [imgdata,setimgdata]=useState()
+  const [titleinfo,settitleinfo]=useState()
+  const [checkot,setcheckot]=useState(false)
+  let [current, setCurrent] = useState(0);
+
+  const shipinfo = [
+    {
+      id: 1,
+      img1: shipping,
+      img1info: "Free Shipping",
+    },
+    {
+      id: 2,
+      img1: cart,
+      img1info: "Secure Checkout",
+    },
+    {
+      id: 3,
+      img1: correct,
+      img1info: "1 Year Warranty",
+    },
+   
+  ];
+
+
+  if (isLoading) {
+    // You can add a loading indicator here if needed
+    return <p>Loading...</p>;
+  }
+
+  // Check if the product is defined before accessing its properties
+  if (!product) {
+    return <p>Product not found</p>;
+  }
+
+  
+    let previousSlide = () => {
+        if (current === 0) setCurrent(0 );
+        else setCurrent(current - 1);
+      };
+    
+      let nextSlide = () => {
+        if (current === product.images.length-1) setCurrent(product.images.length-1);
+        else setCurrent(current + 1);
+      };
+  console.log(product.images.length)
+
+  const checkout=()=>{
+    setcheckot(true)
+    const handleClick = () => {
+      cart.setCart.mutate({}) 
+    }
+  }
+
+  return (
+    <>
+    
+    <div className="relative grid grid-cols-2 grid-row-2 w-[100vw]">
+      <div className="row-start-2 md:row-start-1 col-span-2">
+        <Deliveryinfo />
+      </div>
+
+      <div className="col-span-2 w-full md:row-start-2">
+        <div className="flex flex-col md:flex-row gap-3 px-2">
+          <div className="relative overflow-hidden md:w-[70vw] ">
+            {/* Check if product.images is defined before accessing its properties */}
+            <div
+              className={`flex transition ease-out duration-40`}
+              style={{
+                transform: `translateX(-${current * 100}%)`,
+              }}
+            >
+              
+
+              {product.images && product.images[0] && (
+               product.images.map((each)=>(
+                <img src={each.url}/>
+                 
+                
+                  
+               ))
+              )}
+            </div>
+
+            <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-10 text-3xl">
+              <button onClick={previousSlide}>
+                <BsFillArrowLeftCircleFill />
+              </button>
+              <button onClick={nextSlide}>
+                <BsFillArrowRightCircleFill />
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <div>
+              <h2 className="text-[28px] font-medium ">Choose a version</h2>
+              <p className="text-[#888888] text-[20px]">
+                Whichever lamp you choose, you’ll be finding flow and resting
+                well in no time.
+              </p>
+            </div>
+            <div className='hidden md:flex grid grid-cols-3 ' >
+        {shipinfo.map((each) => (
+            <div className='flex flex-col justify-center text-center md:flex-row items-center gap-[1rem]  '> 
+          <img className='w-[2.3rem]' key={each.id} src={each.img1} alt={each.img1info} />
+          <p className=''>{each.img1info}</p>
+          </div>
+        ))}
+      </div>
+
+            <div className="py-[1rem] mt-4 flex justify-between px-[1rem] border border-gray-300  rounded-md  shadow-md">
+              <div>
+                <h2 className="text-[20px]">{product.title}</h2>
+                <p className="text-[#888888] text-[12px]">
+                  {product.dimensions}
+                </p>
+              </div>
+              <p>${(product.price / 100).toFixed(2)}</p>
+            </div>
+            <button onClick={checkout} className="bg-[#000000] text-white w-full rounded-full p-[1rem] mt-4">
+              Add to cart
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className={` absolute top-0 md:right-0 bg-[#ffffff] ease-in-out duration-700 transition-all md:w-[60vw] lg:w-[42vw] ${checkot?" translate-x-0":"translate-x-[100%]"}`}>
+        <div className="justify-between flex px-[2rem]  items-center">
+          <p className="text-[2rem]">Cart</p>
+        <button onClick={()=>setcheckot(false)}  className="ease-in-out duration-700 transition-all font-semibold text-[4rem] hover:rotate-45  p-[1rem] mt-4">
+             <img  className={`w-[2rem] ease-in-out duration-700 transition-all transform hover:rotate-45`} src={cross1}/>
+            </button>
+
+            
+        </div>
+        <Cart val={imgdata} title={titleinfo} />
+      </div>
+    </div>
+      
+      <Learnmore/>
+      <Imageanimation/>
+      
+
+      <div>
+      {createCart.isLoading && <div>Loading...</div>}
+      {!cart?.id && (
+        <button onClick={handleClick}>
+          Create cart
+        </button>
+      )}
+      {cart?.id && (
+        <div>Cart ID: {cart.id}</div>
+      )}
+    </div>
+
+    {console.log("CAART INFO",cart.id)}
+    </>
+  );
+}
+
+export default Shoppingnew;
+
+
+
+
+  
+
+
+
