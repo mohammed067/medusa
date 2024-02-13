@@ -128,13 +128,21 @@ function Carttop() {
     setIsLoading(false);
   }, [cart1]);
 
-  const increment = (id) => {
+  const increment = async (id) => {
+    // Assuming setIncrementer is a state updater function from a React useState hook
     setIncrementer((prev) => prev + 1);
     const newQuantity = incrementer + 1;
 
-    // Update the quantity in local storage and state
-    updateQuantity(id, newQuantity);
-  };
+    // Assuming updateQuantity is an asynchronous function
+    try {
+        await updateQuantity(id, newQuantity);
+        // If updateQuantity is successful, you can perform any additional tasks here
+    } catch (error) {
+        // Handle error if the update fails
+        console.error("Failed to update quantity:", error);
+    }
+};
+
 
   const decrement = (id) => {
     setIncrementer((prev) => (prev > 1 ? prev - 1 : 1));

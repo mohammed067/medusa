@@ -19,10 +19,13 @@ function Home() {
         <Learnmore/>
         <Imageslider/>
         <Clockanimated/> 
+        <div className='px-[2rem]'>
         <Shoppingnew/>
+        </div>
+        
        
          <Learnmore/>
-        <Animatedtext1/>
+        {/* <Animatedtext1/> */}
        
       
         {/* <Appsection/> */}

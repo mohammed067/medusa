@@ -69,7 +69,7 @@ function Navbar() {
       <ul
         className={
           !nav
-            ? " absolute -translate-y-full duration-300 ease-in top-0 left-0 w-full h-screen flex flex-col  justify-start items-center"
+            ? " absolute z-50 -translate-y-full duration-300 ease-in top-0 left-0 w-full h-screen flex flex-col  justify-start items-center"
             : "absolute translate-y-0 -top-[4rem] -left-4 px-[1rem] w-full duration-300 ease-in  bg-[#ffffff] flex flex-col my-[6rem] mx-[1rem]   justify-start items-start lg:hidden"
         }
       >

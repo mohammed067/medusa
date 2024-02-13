@@ -192,7 +192,7 @@ function Clockanimated() {
             />
           </div>
 
-          <div className=" w-[40vw] h-[70vh] lg:h-[60vh] absolute">
+          <div className=" w-[40vw] lg:h-[60vh] absolute">
             <img
               className={`w-[40vw] h-[70vh] lg:h-[60vh] absolute transition-all duration-700 ${
                 txtclick == 3 ? "scale-x-1 " : "scale-x-0"
