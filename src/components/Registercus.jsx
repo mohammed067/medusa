@@ -117,9 +117,11 @@ function Registercus() {
   return (
     <>
       {/* Registration Form */}
-      <form className="w-full max-w-md mx-auto mt-8 p-8 bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 rounded-md">
+      <div className="flex pt-[8rem]  justify-center items-center">
+       
+      <form className="w-full border border-gray-300 flex  flex-col gap-[0.7rem] max-w-md mx-auto mt-8 p-8 bg-gradient-to-r bg-[#F9F9F9] rounded-md">
         <label
-          className="block text-white text-sm font-bold mb-2"
+          className="block  text-sm font-bold mb-2"
           htmlFor="firstname"
         >
           First Name
@@ -133,7 +135,7 @@ function Registercus() {
         />
 
         <label
-          className="block text-white text-sm font-bold mb-2"
+          className="block  text-sm font-bold mb-2"
           htmlFor="lastname"
         >
           Last Name
@@ -147,7 +149,7 @@ function Registercus() {
         />
 
         <label
-          className="block text-white text-sm font-bold mb-2"
+          className="block  text-sm font-bold mb-2"
           htmlFor="email"
         >
           Email
@@ -161,7 +163,7 @@ function Registercus() {
         />
 
         <label
-          className="block text-white text-sm font-bold mb-2"
+          className="block  text-sm font-bold mb-2"
           htmlFor="password"
         >
           Password
@@ -175,7 +177,7 @@ function Registercus() {
         />
 
         <button
-          className="bg-white hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className="bg-white border border-gray-200 mt-3 hover:bg-gray-200 text-gray-800 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
           type="button"
           onClick={handleCreate}
         >
@@ -183,10 +185,12 @@ function Registercus() {
         </button>
       </form>
 
+      </div>
+     
       {/* Login Form */}
       {/* <div>
         <form className='w-full max-w-md mx-auto mt-8 p-8 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-md' onSubmit={handleLogin}>
-          <label className="block text-white text-sm font-bold mb-2" htmlFor="login-email">
+          <label className="block  text-sm font-bold mb-2" htmlFor="login-email">
             Email
           </label>
           <input
@@ -197,7 +201,7 @@ function Registercus() {
             onChange={(e) => setLoginaccountemail(e.target.value)}
           />
 
-          <label className="block text-white text-sm font-bold mb-2 mt-4" htmlFor="login-password">
+          <label className="block  text-sm font-bold mb-2 mt-4" htmlFor="login-password">
             Password
           </label>
           <input

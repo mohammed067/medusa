@@ -141,7 +141,7 @@ function Shoppingnew() {
                           key={index}
                           src={each.url}
                           alt={`slide-${index}`}
-                          className="w-[20rem] 2xl:h-[40rem]  lg:w-auto xl:h-[25rem] xl:w-full"
+                          className="w-[100vw]"
                         />
                       ))}
                   </div>

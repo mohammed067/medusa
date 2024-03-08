@@ -6,10 +6,10 @@ import moon1 from "../Images/moon1.svg";
 import knobw from "../Images/knobw.svg";
 import { useInView } from "react-intersection-observer";
 import clsx from "clsx";
-import framer1 from "../Images/framer1.webp";
-import framer2 from "../Images/framer2.webp";
-import framer3 from "../Images/framer3.webp";
-import framer4 from "../Images/framer4.webp";
+import framer1 from '../Images/framer1.webp';
+import framer2 from '../Images/framer2.webp';
+import framer3 from '../Images/framer3.webp';
+import framer4 from '../Images/framer4.webp';
 
 function Imageanimation() {
   const [issticky, setissticky] = useState(false);
@@ -92,29 +92,29 @@ function Imageanimation() {
     },
   ];
 
-  const imgslid = [
+  const imgslid=[
     {
-      id: 1,
-      img: framer1,
+        id:1,
+        img:framer1,
     },
 
     {
-      id: 2,
-      img: framer2,
+        id:2,
+        img:framer2,
     },
 
     {
-      id: 3,
-      img: framer3,
+        id:3,
+        img:framer3,
     },
 
     {
-      id: 4,
-      img: framer4,
+        id:4,
+        img:framer4,
     },
-  ];
+]
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [imginfo, setimginfo] = useState(imgslid[0].img);
+  const [imginfo,setimginfo]=useState(imgslid[0].img)
   const picRef = useRef(null);
   const tittleRef = useRef(null);
   const handleScroll = () => {
@@ -142,9 +142,9 @@ function Imageanimation() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log("scroll checking", scrollPosition);
-  }, [scrollPosition]);
+  useEffect(()=>{
+    console.log("scroll checking",scrollPosition)
+  },[scrollPosition])
 
   useEffect(() => {
     const checking = () => {
@@ -165,39 +165,37 @@ function Imageanimation() {
     checking1();
   }, [inview1]);
 
-  useEffect(() => {
-    if (scrollPosition <= 80) {
-      setimginfo(imgslid[0].img);
-      console.log("inview 3 clicked");
+  useEffect(()=>{
+    if (scrollPosition<=80 ){
+      setimginfo(imgslid[0].img)
+      console.log("inview 3 clicked")
     }
 
-    if (scrollPosition >= 80 && scrollPosition <= 280) {
-      setimginfo(imgslid[1].img);
+    if (scrollPosition>=80 && scrollPosition<=280){
+      setimginfo(imgslid[1].img)
     }
 
-    if (scrollPosition >= 350 && scrollPosition <= 450) {
-      setimginfo(imgslid[2].img);
+    if (scrollPosition>=350 && scrollPosition<=450){
+      setimginfo(imgslid[2].img)
     }
-  }, [scrollPosition]);
+  },[scrollPosition])
 
   return (
     <>
       <div
-        ref={picRef} 
+        ref={picRef}
         className={` ${
-          issticky ? "sticky mt-[3rem] hidden md:flex flex-col  top-[10vh] " : "static h-[70vh] "
+          issticky ? "sticky  top-[10vh] " : "static h-[70vh] "
         } overflow-scroll h-[90vh]  bg-black `}
       >
         <div className="h-[300vh]   ">
-          <div
-            className={`90vh 2xl:w-[80%] hidden 2xl:px-[4rem] md:flex justify-between  sticky top-[20vh] `}
-          >
-            <div className=" md:w-[45vw] flex flex-col pl-[2rem]">
+          <div className={`90vh  flex justify-between  sticky top-[20vh] `}>
+            <div className="w-[30vw] flex flex-col pl-[2rem]">
               <div
                 ref={tittleRef}
                 className={`mt-[1rem]   sticky top-[20vh] h-[70vh] overflow-hidden`}
               >
-                <div ref={ref} className="h-[20vh] 2xl:w-[10rem]"></div>
+                <div ref={ref} className="h-[20vh]"></div>
                 {/* <div
                   className={`flex flex-col ${
                     inview1 ? "gap-6" : "gap-[4rem]"
@@ -210,64 +208,32 @@ function Imageanimation() {
                       className={` mt-6 px-[1rem] py-[2rem] ${
                         !issticky ? "bg-red-700" : "bg-[#FFFFFF1A]"
                       }  `}
-                    >4
+                    >
                       <img src={each.img} alt="image" />
                       <p className="text-white text-2xl">{each.description}</p>
                     </div>
                   ))}
                 </div> */}
 
-                <div className="2xl:w-[10rem]">
-                  <div
-                    className={`bg-[#FFFFFF1A] lg:w-[30rem] gap-4 mt-6 px-[1rem] py-[2rem] transition-all ease-in-out duration-1000`}
-                  >
-                    <img className="" src={textinfo[0].img} alt="image" />
-                    <p className="text-white lg:w-[80%] text-2xl">
-                      {textinfo[0].description}
-                    </p>
-                  </div>
-                  <div
-                    ref={ref3}
-                    className={clsx(
-                      "bg-[#FFFFFF1A] lg:w-[30rem] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ",
-                      inview3
-                        ? "mt-[1rem] delay-700 opacity-95"
-                        : "mt-[10rem] ddelay-0 opacity-40"
-                    )}
-                  >
+                <div>
+                    <div className={`bg-[#FFFFFF1A] mt-6 px-[1rem] py-[2rem] transition-all ease-in-out duration-1000`}>
+                    <img src={textinfo[0].img} alt="image" />
+                      <p className="text-white text-2xl">{textinfo[0].description}</p>
+                    </div>
+                    <div ref={ref3} className={clsx("bg-[#FFFFFF1A] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ", inview3?"mt-[1rem] delay-700 opacity-95":"mt-[10rem] ddelay-0 opacity-40")}>
+
                     <img src={textinfo[1].img} alt="image" />
-                    <p className="text-white text-2xl">
-                      {textinfo[1].description}
-                    </p>
-                  </div>
-                  <div
-                    ref={ref4}
-                    className={clsx(
-                      "bg-[#FFFFFF1A] lg:w-[30rem] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ",
-                      inview4
-                        ? "mt-[1rem] delay-700 opacity-95"
-                        : "mt-[10rem] delay-0 opacity-40"
-                    )}
-                  >
+                      <p className="text-white text-2xl">{textinfo[1].description}</p>
+                    </div>
+                    <div ref={ref4} className={clsx("bg-[#FFFFFF1A] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ", inview4?"mt-[1rem] delay-700 opacity-95":"mt-[10rem] delay-0 opacity-40")}>
+
                     <img src={textinfo[2].img} alt="image" />
-                    <p className="text-white text-2xl">
-                      {textinfo[2].description}
-                    </p>
-                  </div>
-                  <div
-                    ref={ref5}
-                    className={clsx(
-                      "bg-[#FFFFFF1A] lg:w-[30rem] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ",
-                      inview5
-                        ? "mt-[1rem] delay-700 opacity-95"
-                        : "mt-[10rem]  delay-0 opacity-40"
-                    )}
-                  >
+                      <p className="text-white text-2xl">{textinfo[2].description}</p>
+                    </div>
+                    <div ref={ref5} className={clsx("bg-[#FFFFFF1A] py-[2rem] mt-6 px-[1rem] transition-all ease-in-out duration-1000 ", inview5?"mt-[1rem] delay-700 opacity-95":"mt-[10rem]  delay-0 opacity-40")}>
                     <img src={textinfo[3].img} alt="image" />
-                    <p className="text-white text-2xl">
-                      {textinfo[3].description}
-                    </p>
-                  </div>
+                      <p className="text-white text-2xl">{textinfo[3].description}</p>
+                    </div>
                 </div>
 
                 <div ref={ref1} className="h-[20vh]"></div>
@@ -275,14 +241,30 @@ function Imageanimation() {
             </div>
 
             <div>
-              <img
-                className="w-[20rem] lg:w-[30rem] xl:w-[40rem] "
-                src={imginfo}
-              />
-            </div>
+            <img className='w-[40rem]' src={imginfo}/>
+              </div>
           </div>
         </div>
       </div>
+
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit
+        exercitationem autem rem unde. Reprehenderit minus cupiditate, beatae,
+        illum ullam numquam sint sequi perspiciatis optio tenetur totam
+        explicabo nobis repudiandae mollitia?
+      </p>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit
+        exercitationem autem rem unde. Reprehenderit minus cupiditate, beatae,
+        illum ullam numquam sint sequi perspiciatis optio tenetur totam
+        explicabo nobis repudiandae mollitia?
+      </p>
+      <p>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Velit
+        exercitationem autem rem unde. Reprehenderit minus cupiditate, beatae,
+        illum ullam numquam sint sequi perspiciatis optio tenetur totam
+        explicabo nobis repudiandae mollitia?
+      </p>
     </>
   );
 }

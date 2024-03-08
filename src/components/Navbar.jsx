@@ -15,7 +15,7 @@ function Navbar() {
       className={`py-2  px-4  z-50 flex items-center bg-white  top-[2rem]  gap-3 lg: shadow-md lg:px-1  text-white text-[14px]  w-full  justify-between `}
     >
       <div className="bg-transparent ">
-        <img className=" bg-transparent min-w-max h-[20px]  " alt="/" src="" />
+        <div className="text-black text-[2rem]">Ecommerce</div>
       </div>
 
       {/* menu */}

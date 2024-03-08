@@ -123,6 +123,7 @@ import Cart from "./components/Cart";
 import Medusacart from "./components/Medusacart";
 import Updatecart from "./components/Updatecart";
 import Retrivecart from "./components/Retrivecart";
+import Completecart from "./components/completecart";
 
 // import Cart from './components/Cart'
 
@@ -143,7 +144,7 @@ function App() {
         </CartProvider> */}
 
         <CartProvider>
-          <Router>
+          {/* <Router>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/Shoppingnew/:path" element={<Shoppingnew />} />
@@ -152,7 +153,9 @@ function App() {
               <Route path="/Login" element={<Logincomp />} />
               <Route path="/Signup/" element={<Registercus />} />
             </Routes>
-          </Router>
+          </Router> */}
+
+          <Completecart/>
         </CartProvider>
       </MedusaProvider>
 
